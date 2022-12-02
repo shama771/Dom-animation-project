@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Gamble game</title>
+</head>
+<body>
+    <label for="player1">Gamble 1:</label>
+    <input type="text" value="Sham">   
+    <button class=".gamble" id="1">Lets Gamble</button>
+    Score:<span ></span><br><br>
+
+    <label for="player2">Gamble 2:</label>
+    <input type="text" value="Bama">   
+    <button class=".gamble" id="2">Lets Gamble</button>
+    Score:<span > </span><br><br>
+
+    <label for="player3">Gamble 3:</label>
+    <input type="text" value="Rama">   
+    <button class=".gamble" id="3">Lets Gamble</button>
+    Score:<span ></span><br><br>
+
+    <label for="player4">Gamble 4:</label>
+    <input type="text" value="Bima">   
+    <button class=".gamble" id="4">Lets Gamble</button>
+    Score:<span ></span><br><br>
+
+    <label for="player5">Gamble 5:</label>
+    <input type="text" value="Vama">   
+    <button class=".gamble" id="5">Lets Gamble</button>
+    Score:<span ></span><br><br>
+
+    <button >Find winner</button>
+    <div class="winner"></div>
+        
+       
+    <script>
+          
+          
+        let playerNames=document.querySelectorAll("input");
+        let gambleBtns=document.querySelectorAll(".gamble");
+        let scoreArea=document.querySelectorAll("span");
+
+        for(let t of gambleBtns){
+            t.addEventListener("click", dicePlay)
+        }
+        
+             function dicePlay(e){
+                
+                
+                user_id=e.target.id-1
+                let choices=[1,2,3,4,5,6]
+                let random=parseInt(Math.random()*choices.length)
+                let diceValue=choices[random]
+                 scoreArea[user_id].innerText=diceValue
+                
+
+             }
+
+
+
+     </script>
+
+</body>
+</html>
