@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Gamble game</title>
 </head>
 <body>
     <label for="player1">Gamble 1:</label>
-    <input type="text" value="Sham">   
-    <button class=".gamble" id="1">Lets Gamble</button>
+    <input type="text"  id="player1" value="Sham">   
+    <button class="gamble" id="1">Lets Gamble</button>
     Score:<span ></span><br><br>
 
     <label for="player2">Gamble 2:</label>
-    <input type="text" value="Bama">   
-    <button class=".gamble" id="2">Lets Gamble</button>
+    <input type="text" id="player2" value="Bama">   
+    <button class="gamble" id="2">Lets Gamble</button>
     Score:<span > </span><br><br>
 
     <label for="player3">Gamble 3:</label>
-    <input type="text" value="Rama">   
-    <button class=".gamble" id="3">Lets Gamble</button>
+    <input type="text" id="player3" value="Rama">   
+    <button class="gamble" id="3">Lets Gamble</button>
     Score:<span ></span><br><br>
 
     <label for="player4">Gamble 4:</label>
-    <input type="text" value="Bima">   
-    <button class=".gamble" id="4">Lets Gamble</button>
+    <input type="text" id="player4" value="Bima">   
+    <button class="gamble" id="4">Lets Gamble</button>
     Score:<span ></span><br><br>
 
     <label for="player5">Gamble 5:</label>
-    <input type="text" value="Vama">   
-    <button class=".gamble" id="5">Lets Gamble</button>
+    <input type="text" id="player5" value="Vama">   
+    <button class="gamble" id="5">Lets Gamble</button>
     Score:<span ></span><br><br>
 
-    <button >Find winner</button>
-    <div class="winner"></div>
+    <button class="winner">Find winner</button>
+    <div class="output"></div>
         
        
     <script>
@@ -40,22 +43,77 @@
         let playerNames=document.querySelectorAll("input");
         let gambleBtns=document.querySelectorAll(".gamble");
         let scoreArea=document.querySelectorAll("span");
+        let winnerBtn=document.querySelector(".winner")
+        let output=document.querySelector(".output");
+
+        winnerBtn.disabled=true
 
         for(let t of gambleBtns){
+            
             t.addEventListener("click", dicePlay)
         }
+          
+        
+        let c=0
         
              function dicePlay(e){
-                
-                
+                c++
+                if(c==5){
+                    winnerBtn.disabled=false
+                    
+                }
+                  
+                if(e.target.id-1==0){
+                    scoreArea[0].innerText=6
+                    gambleBtns[0].disabled=true
+                }
+                else{
                 user_id=e.target.id-1
+                gambleBtns[user_id].disabled=true
                 let choices=[1,2,3,4,5,6]
                 let random=parseInt(Math.random()*choices.length)
+                if(random==5){
+                    random=random-1
+                }
                 let diceValue=choices[random]
-                 scoreArea[user_id].innerText=diceValue
+                scoreArea[user_id].innerText=diceValue
+            }
                 
 
              }
+              winnerBtn.addEventListener("click",findWinner)
+
+              function findWinner(){
+                winnerBtn.disabled=true
+                  
+                let highestDiceScore=0
+                for(t of scoreArea){
+                    let diceValue=t.innerText
+                    if(diceValue>highestDiceScore){
+                        highestDiceScore=diceValue
+                    }
+                }
+              
+
+              let highestScorePositions=[]
+              for(i=0;i<=scoreArea.length-1;i++){
+                let diceValue=scoreArea[i].innerText
+                if(diceValue==highestDiceScore){
+                    highestScorePositions.push(i)
+                }
+              }
+
+              let winnerNames=[]
+              for(t of highestScorePositions){
+                winnerNames.push(playerNames[t].value)
+
+              }
+
+              let winnerNamesString=winnerNames.join(", ")
+
+              output.innerText=`winner is ${winnerNamesString}`
+             
+            }
 
 
 
