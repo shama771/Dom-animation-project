@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+  <link href="./home.css" rel="stylesheet" />
+  <div class="home-container">
+    <div class="home-container1"></div>
+    <div class="home-container2">
+      <!-- <form  onsubmit="return myfun()"> -->
+      <label >Password</label><br><br>
+      <input type="password" class="pwd" placeholder="Enter password" value="">
+      <span ></span><br><br>
+      <button class="submit">submit</button>
+      <!-- <input type="submit" value="Submit"> -->
+    <!-- </form> -->
+    </div>
+    <div class="home-container3"></div>
+    </div>
+
+  <script>
+    let submitBtn=document.querySelector(".submit");
+    let validationArea=document.querySelector("input");
+    let message=document.querySelector("span")
+
+    submitBtn.addEventListener("click",login)
+     
+    function login(){
+      console.log(7)
+      a=validationArea.value.length
+      b=validationArea.value
+      if( a !=5 || a==0){
+        message.innerText="***Password Incorrect it should contain any 5 numbers only"
+
+      }else if(a==5 ){
+        for(i=0;i<a;){
+           if(b[i]==0 || b[i]==1 || b[i]==2 || b[i]==3 || b[i]==4 || b[i]==5 || b[i]==6 || b[i]==7 || b[i]==8 || b[i]==9 ){
+             i++
+
+
+      }
+          
+    }if(i==5){
+      message.innerText="Awesomw guys"
+
+    }
+  
+  }
+}
+
+
+
+
+    // function myfun(){
+    //   let a=document.getElementById("pwd").value;
+    //   if(a=="" ){
+    //     document.getElementById("message").inner.HTML="***Password Incorrect Should contain 9 numbers and 1 special character"
+    //     // return true
+    //   }
+    //   else if(a.length==10 ){
+    //     for(i=0;i<a.length;){
+    //       if(a[i]==0 || b[i]==1 || a[i]==2 || a[i]==3 || a[i]==4 || a[i]==5 || a[i]==6 || a[i]==7 || a[i]==8 || a[i]==9 || a[i]=="!" || a[i]=="@" || a[i]=="#" || a[i]=="$" ||  a[i]=="%" || a[i]=="^" || a[i]=="&" || a[i]=="*" || a[i]==""){
+    //          i++
+             
+    //       }
+
+    //     }if(i==10){
+    //       document.getElementById("message").inner.HTML="Awesome guys"
+    //       return false
+    //     }
+    //   }
+    // }
+
+
+
+
+  </script>
+</body>
+</html>
